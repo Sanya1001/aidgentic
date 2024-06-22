@@ -19,9 +19,36 @@ const FormPage: React.FC = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form Data Submitted:', formData);
+    // console.log('Form Data Submitted:', formData);
+
+    try {
+      const response = await fetch('/api/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const result = await response.json();
+      console.log('Form Data Submitted:', result);
+
+      // Reset form fields after submission
+      setFormData({
+        location: '',
+        name: '',
+        topic: '',
+        description: '',
+        peopleAffected: ''
+      });
+
+      alert('Data saved successfully!');
+    } catch (error) {
+      console.error('Error submitting form data:', error);
+      alert('Error submitting data.');
+    }
   };
 
   return (
