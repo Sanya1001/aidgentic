@@ -1,6 +1,14 @@
 "use client";
 
 import React, { useState } from 'react';
+import Navbar from '../../components/navbar';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+
 
 const FormPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -11,7 +19,7 @@ const FormPage: React.FC = () => {
     peopleAffected: ''
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -51,15 +59,17 @@ const FormPage: React.FC = () => {
     }
   };
 
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
+  return ( 
+    <div>
+    <div className="min-h-screen w-full flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+      
+      <div className="max-w-md w-full space-y-12">
         <div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Submit Information</h2>
         </div>
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+        <form className="mt-8 space-y-12 max-w-md w-full" onSubmit={handleSubmit}>
           <div className="rounded-md shadow-sm -space-y-px">
-            <div>
+            <div className="space-y-4">
               <label htmlFor="location" className="sr-only">Location</label>
               <input
                 id="location"
@@ -73,7 +83,7 @@ const FormPage: React.FC = () => {
                 onChange={handleChange}
               />
             </div>
-            <div>
+            <div className="space-y-4">
               <label htmlFor="name" className="sr-only">Name</label>
               <input
                 id="name"
@@ -87,7 +97,7 @@ const FormPage: React.FC = () => {
                 onChange={handleChange}
               />
             </div>
-            <div>
+            <div className="space-y-4">
               <label htmlFor="topic" className="sr-only">Topic</label>
               <input
                 id="topic"
@@ -101,7 +111,7 @@ const FormPage: React.FC = () => {
                 onChange={handleChange}
               />
             </div>
-            <div>
+            <div className="space-y-4">
               <label htmlFor="description" className="sr-only">Description</label>
               <textarea
                 id="description"
@@ -114,7 +124,7 @@ const FormPage: React.FC = () => {
                 onChange={handleChange}
               />
             </div>
-            <div>
+            <div className="space-y-4">
               <label htmlFor="peopleAffected" className="sr-only">People Affected</label>
               <input
                 id="peopleAffected"
@@ -129,7 +139,7 @@ const FormPage: React.FC = () => {
               />
             </div>
           </div>
-          <div>
+          <div className="space-y-4">
             <button
               type="submit"
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
@@ -139,6 +149,7 @@ const FormPage: React.FC = () => {
           </div>
         </form>
       </div>
+    </div>
     </div>
   );
 };
