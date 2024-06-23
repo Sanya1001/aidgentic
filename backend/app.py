@@ -44,3 +44,12 @@ async def invoke():
         # add new row to jsonl file
 
         f.write(json.dumps(current_notifications, indent=2))
+
+@app.get('/notifications')  # get all notifications
+async def get_notifications():
+    try:
+        current_notifications = json.load(open(r'./data/notifications.json', 'r'))
+    except json.decoder.JSONDecodeError:
+        current_notifications = []
+
+    return current_notifications
