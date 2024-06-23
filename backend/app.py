@@ -39,7 +39,7 @@ async def invoke():
                 'report': report
             }
 
-        current_notifications.append(new_row)
+            current_notifications.append(new_row)
 
         # add new row to jsonl file
 

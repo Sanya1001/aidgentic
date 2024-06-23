@@ -24,7 +24,7 @@ interface Report {
 export function Report(){
 
     const [report, setReport] = useState<Report | null>(null);
-    const id = "World Food Program";
+    const id = "California Fire Foundation";
 
     useEffect(() => {
         fetch('/api/reports')

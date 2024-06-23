@@ -114,7 +114,7 @@ class MAGraph():
         for state in self.graph.stream({"messages": [HumanMessage(content="", name=""),],
                                         'agent_scratchpad':[]},
                                         {"recursion_limit": 20},):
-            #print(state)
+            print(state)
             if state.get('resource_requestor', None):
                 briefing = state['resource_requestor']['messages'][-1].content
             if state.get('ngo_router', None):

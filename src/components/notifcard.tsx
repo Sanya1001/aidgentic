@@ -33,7 +33,7 @@ export function NotifCard({ className, ...props }: CardProps) {
 
   const handleRefresh = async () => {
     try {
-      const response = await fetch("http://localhost:8000/invoke'", {
+      const response = await fetch("http://localhost:8000/invoke", {
         method: "POST",
       });
 
