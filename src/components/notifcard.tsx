@@ -30,6 +30,25 @@ const notifications = [
 type CardProps = React.ComponentProps<typeof Card>
 
 export function NotifCard({ className, ...props }: CardProps) {
+
+  const handleRefresh = async () => {
+    try {
+      const response = await fetch("http://localhost:8000/invoke'", {
+        method: "POST",
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      // Handle success or other logic
+      console.log("Refresh successful");
+    } catch (error) {
+      console.error("Error refreshing data:", error);
+      // Handle error scenarios
+    }
+  };
+
   return (
     <Card className={cn("w-[380px]", className)} {...props} id="notif-card">
       <CardHeader>
@@ -68,10 +87,11 @@ export function NotifCard({ className, ...props }: CardProps) {
           ))}
         </div>
       </CardContent>
-      <CardFooter>
+      <CardFooter id="refresh">
         <Button className="w-full">
           <Check className="mr-2 h-4 w-4" /> Mark all as read
         </Button>
+        <Button className="w-full" onClick={handleRefresh} id="refresh-button">Refresh</Button>
       </CardFooter>
     </Card>
   )
