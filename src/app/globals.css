@@ -152,16 +152,27 @@
   #sidebar {
     background-color: rgba(255, 251, 251, 0.75);
     color: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%; /* Adjust height as needed */
+    width: 200px; /* Adjust width as needed */
+    border-right: 1px solid #ccc; /* Optional: Sidebar border */
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds height */
+    z-index: 1000; /* Adjust z-index as needed */
   }
 
   .sidebar-item:hover {
     color: white;
   }
 
+  #right-side {
+    margin-left: 15rem;
+  }
+
   #dash {
     padding-top: 5rem;
     background-color: rgba(0, 0, 0, 0.75);
-
   }
 
   #resource-main {

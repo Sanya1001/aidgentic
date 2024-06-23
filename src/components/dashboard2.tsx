@@ -30,7 +30,7 @@ const Dashboard2: React.FC = () => {
       </aside>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col" id='right-side'>
 
         {/* Content */}
         <main className="flex-1 p-4" id='resource-content'>

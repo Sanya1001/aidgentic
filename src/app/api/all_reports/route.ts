@@ -11,7 +11,7 @@ interface Report {
 }
 
 // Define the path to the JSON file
-const dataFilePath = path.join(process.cwd(), 'data', 'notifications.json');
+const dataFilePath = path.join(process.cwd(), 'data', 'submissions.json');
 
 export async function GET(req: NextRequest) {
   try {

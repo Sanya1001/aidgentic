@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../../components/navbar";
 import {
   Accordion,
@@ -9,15 +9,42 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { timeStamp } from "console";
+import { read } from "fs";
+
+interface FormData {
+  read: boolean;
+  city: string;
+  state: string;
+  name: string;
+  topic: string;
+  description: string;
+  affected_population: string;
+}
 
 const FormPage: React.FC = () => {
+
+  const [reports, setReport] = useState<FormData[] | []>([]);
+
+  useEffect(() => {
+    fetch('/api/all_reports')
+    .then((response) => response.json())
+    .then((data) => {
+        console.log(data);
+        setReport(data.message);
+        // const matchingReport = data.message.reverse().find((report: Report) => report.ngo_name == id);
+        // setReport(matchingReport || null);
+      })
+    .catch((error) => console.error('Error fetching reports:', error));
+}, []);
+
   const [formData, setFormData] = useState({
+    read: false,
     city: "",
     state: "",
     name: "",
     topic: "",
     description: "",
-    peopleAffected: "",
+    affected_population: "",
   });
 
   const handleChange = (
@@ -58,12 +85,13 @@ const FormPage: React.FC = () => {
 
       // Reset form fields after submission
       setFormData({
+        read: false,
         city: "",
         state: "",
         name: "",
         topic: "",
         description: "",
-        peopleAffected: "",
+        affected_population: "",
       });
 
       alert("Data saved successfully!");
@@ -178,7 +206,7 @@ const FormPage: React.FC = () => {
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="People Affected"
-                  value={formData.peopleAffected}
+                  value={formData.affected_population}
                   onChange={handleChange}
                 />
               </div>
@@ -218,7 +246,17 @@ This deployment builds on California’s far-reaching efforts to aid other state
  </a>
           </AccordionContent>
         </AccordionItem>
-        <AccordionItem value="item-2">
+        {reports.map((report, index) => (
+          <AccordionItem key={index} value={`item-${index + 2}`}>
+            <AccordionTrigger className="reports-accord">
+              {report.topic}
+            </AccordionTrigger>
+            <AccordionContent className="accord-content">
+              {report.description}
+            </AccordionContent>
+          </AccordionItem>
+        ))}
+        {/* <AccordionItem value="item-2">
           <AccordionTrigger className="reports-accord">
             Report from citizen about wildfire sighting
           </AccordionTrigger>
@@ -235,7 +273,7 @@ This deployment builds on California’s far-reaching efforts to aid other state
             Yes. It&apos;s animated by default, but you can disable it if you
             prefer.
           </AccordionContent>
-        </AccordionItem>
+        </AccordionItem> */}
       </Accordion>
       <Navbar />
     </div>

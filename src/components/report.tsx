@@ -14,7 +14,9 @@ import { get } from "http";
 import { time } from "console";
 
 interface Report {
-    ngo_id: string;
+    title: string;
+    ngo_name: string;
+    resources: string;
     timestamp: string;
     report: string;
   }
@@ -22,14 +24,14 @@ interface Report {
 export function Report(){
 
     const [report, setReport] = useState<Report | null>(null);
-    const id = "California fire foundation";
+    const id = "World Food Program";
 
     useEffect(() => {
         fetch('/api/reports')
         .then((response) => response.json())
         .then((data) => {
             console.log(data);
-            const matchingReport = data.message.reverse().find((report: Report) => report.ngo_id == id);
+            const matchingReport = data.message.reverse().find((report: Report) => report.ngo_name == id);
             setReport(matchingReport || null);
           })
         .catch((error) => console.error('Error fetching reports:', error));
@@ -39,7 +41,7 @@ export function Report(){
         <div>
             <Card id="report-body">
                 <CardHeader>
-                    <CardTitle>{report?.ngo_id}</CardTitle>
+                    <CardTitle>{report?.title}</CardTitle>
                     <CardDescription>{report?.timestamp}</CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -48,7 +50,7 @@ export function Report(){
                 ))}
                 </CardContent>
                 <CardFooter>
-                    <p>Card Footer</p>
+                    <p>{report?.ngo_name}</p>
                 </CardFooter>
             </Card>
         </div>
