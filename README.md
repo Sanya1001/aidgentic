@@ -17,8 +17,10 @@ The motivation for creating Sync stems from the pressing need to improve disaste
 ## Multi-Agent Architecture
 
 ![Untitled-2024-03-06-2342](https://github.com/Sanya1001/aidgentic/assets/23709618/5544d4b5-ae69-4c44-a289-e9a0c49980d1)
+![Comparison](https://github.com/Sanya1001/aidgentic/blob/main/Sync/Slide12.jpg)
 
 ## Techstack
+LangChain & LangGraph, NextJS, Tailwind, FastAPI, Anthropic
 
 ## Developers
 
