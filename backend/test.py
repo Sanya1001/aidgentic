@@ -36,7 +36,7 @@ async def test():
       }
 
       current_notifications.append(new_row)
-      
+
       # add new row to jsonl file
 
     f.write(json.dumps(current_notifications, indent=2))

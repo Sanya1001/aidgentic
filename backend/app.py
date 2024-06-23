@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from run import invoke_model
 import json
-from backend.agents.entry_point import MAGraph
+from agents.entry_point import MAGraph
 import csv
 import datetime
 from dotenv import load_dotenv
@@ -17,16 +17,27 @@ graph = MAGraph()
 async def invoke():
     data = graph.invoke()
 
-    ngo_ids = data['ngo_ids']
+    ngo_names = data['ngo_names']
     report = data['report']
 
-    with open(r'./data/notifications.jsonl', 'a', newline='') as f:
+    try:
+        current_notifications = json.load(open(r'./data/notifications.json', 'r'))
+    except json.decoder.JSONDecodeError:
+        current_notifications = []
 
-        for ngo_id in ngo_ids:
+    with open(r'./data/notifications.json', 'w', newline='') as f:
+        # update json file.
+
+        # fieldnames = ['ngo_id', 'timestamp', 'report']
+        for ngo_id in ngo_names:
             new_row = {
                 "ngo_id": ngo_id,
                 'timestamp': datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
                 'report': report
             }
-        
-            f.write(json.dumps(new_row) + '\n')
+
+        current_notifications.append(new_row)
+
+        # add new row to jsonl file
+
+        f.write(json.dumps(current_notifications, indent=2))
