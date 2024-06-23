@@ -1,26 +1,12 @@
 import getpass
 import os
-from pprint import pprint
-from typing import Annotated, Any
-# from langchain_community.tools.tavily_search import TavilySearchResults
-from langchain_core.tools import tool
-from langchain_experimental.utilities import PythonREPL
 from langchain_core.messages import (
     BaseMessage,
     HumanMessage,
     ToolMessage,
 )
-# import runnable
-from langchain_core.output_parsers.openai_functions import JsonOutputFunctionsParser
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-import operator
-from typing import Annotated, Sequence, TypedDict
 from langgraph.graph import END, StateGraph
 import functools
-from langchain.tools import tool
-from langchain_core.runnables.base import RunnableSequence
-from langchain_core.messages import AIMessage
-from langchain.agents import AgentExecutor, create_openai_tools_agent
 from langchain_core.messages import BaseMessage, HumanMessage
 from typing import List, Tuple, Literal
 from langgraph.prebuilt import ToolNode
@@ -116,7 +102,7 @@ class MAGraph():
             # The previous agent is invoking a tool
             return "call_tool"
         return "continue"
-    def invoke(self, prompt):
+    def invoke(self):
         briefing = None
         ngo_output = None
         for state in self.graph.stream({"messages": [HumanMessage(content="", name=""),],
