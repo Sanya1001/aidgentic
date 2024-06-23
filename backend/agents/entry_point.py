@@ -10,12 +10,12 @@ from langchain_core.messages import BaseMessage, HumanMessage
 from typing import List, Tuple, Literal
 from langgraph.prebuilt import ToolNode
 from langchain_anthropic import ChatAnthropic
-from tools import (
+from backend.agents.tools import (
     search_disaster_knowledge_base,
     get_ngos_for_region,
     ngo_output_to_list
 )
-from agents import (
+from backend.agents.agents import (
     create_agent,
     reporter_agent,
     resource_agent,
@@ -23,7 +23,7 @@ from agents import (
     AgentState,
     NGOList
 )
-from prompts import PROMPTS
+from backend.agents.prompts import PROMPTS
 class MAGraph():
     def __init__(self, model='claude-3-opus-20240229'):
         self.model = model

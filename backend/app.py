@@ -1,8 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from run import invoke_model
 import json
-from agents.entry_point import MAGraph
+from backend.agents.entry_point import MAGraph
 import csv
 import datetime
 from dotenv import load_dotenv
@@ -19,8 +18,8 @@ async def invoke():
 
     print('data', data)
 
-    ngo_names = [x['name'] for x in data['ngo_names']]
-    report = data['report']
+    report = data['body']
+    title = data['title']
 
     try:
         current_notifications = json.load(open(r'./data/notifications.json', 'r'))
@@ -31,10 +30,12 @@ async def invoke():
         # update json file.
 
         # fieldnames = ['ngo_id', 'timestamp', 'report']
-        for ngo_id in ngo_names:
+        for ngo in data['ngo_list']:
             new_row = {
-                "ngo_id": ngo_id,
-                'timestamp': datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                "title": title,
+                "ngo_name": ngo['name'],
+                'resources': ngo['resources'],
+                'timestamp': ngo.get('date', datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')),
                 'report': report
             }
 

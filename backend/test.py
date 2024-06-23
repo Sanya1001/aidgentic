@@ -9,7 +9,7 @@ async def test():
   # test post
   result = requests.post('http://localhost:8000/invoke')
 
-  print(result.json())
+  # print(result.json())
 
 
 

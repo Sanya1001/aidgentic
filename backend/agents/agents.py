@@ -17,7 +17,7 @@ from langchain_core.messages import AIMessage
 from langchain_core.messages import BaseMessage, HumanMessage
 from langchain_core.pydantic_v1 import BaseModel, Field
 
-from tools import(
+from backend.agents.tools import(
     read_database,
     get_ngos_for_region,
 
