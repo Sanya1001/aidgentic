@@ -19,3 +19,12 @@ The motivation for creating Sync stems from the pressing need to improve disaste
 ![Untitled-2024-03-06-2342](https://github.com/Sanya1001/aidgentic/assets/23709618/5544d4b5-ae69-4c44-a289-e9a0c49980d1)
 
 ## Techstack
+
+## Developers
+
+[@uzairname](https://www.github.com/uzairname)
+[@sanya1001](https://www.github.com/sanya1001)
+[@sidb70](https://www.github.com/sidb70)
+
+
+
