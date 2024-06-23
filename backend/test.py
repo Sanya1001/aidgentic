@@ -19,21 +19,27 @@ async def test():
 
   report = 'This is a report'
 
-  with open(r'./data/notifications.jsonl', 'a', newline='') as f:
+  try:
+    current_notifications = json.load(open(r'./data/notifications.json', 'r'))
+  except json.decoder.JSONDecodeError:
+    current_notifications = []
+
+  with open(r'./data/notifications.json', 'w', newline='') as f:
     # update json file.
 
     # fieldnames = ['ngo_id', 'timestamp', 'report']
-
     for ngo_id in ngo_ids:
       new_row = {
         "ngo_id": ngo_id,
         'timestamp': datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
         'report': 'report'
       }
-      
+
+      current_notifications.append(new_row)
+
       # add new row to jsonl file
-      
-      f.write(json.dumps(new_row) + '\n')
+
+    f.write(json.dumps(current_notifications, indent=2))
 
       #   {
       #     'ngo_id': ngo_id,

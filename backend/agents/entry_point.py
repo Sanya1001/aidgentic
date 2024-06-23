@@ -1,35 +1,21 @@
-import getpass
 import os
-from pprint import pprint
-from typing import Annotated, Any
-# from langchain_community.tools.tavily_search import TavilySearchResults
-from langchain_core.tools import tool
-from langchain_experimental.utilities import PythonREPL
 from langchain_core.messages import (
     BaseMessage,
     HumanMessage,
     ToolMessage,
 )
-# import runnable
-from langchain_core.output_parsers.openai_functions import JsonOutputFunctionsParser
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-import operator
-from typing import Annotated, Sequence, TypedDict
 from langgraph.graph import END, StateGraph
 import functools
-from langchain.tools import tool
-from langchain_core.runnables.base import RunnableSequence
-from langchain_core.messages import AIMessage
-from langchain.agents import AgentExecutor, create_openai_tools_agent
 from langchain_core.messages import BaseMessage, HumanMessage
 from typing import List, Tuple, Literal
 from langgraph.prebuilt import ToolNode
 from langchain_anthropic import ChatAnthropic
-from tools import (
+from agents.tools import (
     search_disaster_knowledge_base,
     get_ngos_for_region,
+    ngo_output_to_list
 )
-from agents import (
+from agents.agents import (
     create_agent,
     reporter_agent,
     resource_agent,
@@ -37,13 +23,10 @@ from agents import (
     AgentState,
     NGOList
 )
-from prompts import PROMPTS
+from agents.prompts import PROMPTS
 class MAGraph():
     def __init__(self, model='claude-3-opus-20240229'):
         self.model = model
-        self._setup()
-
-    def _setup(self):
         self._create_agents()
         self._create_graph()
     def _create_agents(self):
@@ -118,15 +101,28 @@ class MAGraph():
             # The previous agent is invoking a tool
             return "call_tool"
         return "continue"
-    def invoke(self, prompt):
-        for state in self.graph.stream({"messages": [HumanMessage(content="testing", name="user"),],
+    def invoke(self):
+        briefing = None
+        ngo_output = None
+        for state in self.graph.stream({"messages": [HumanMessage(content="", name=""),],
                                         'agent_scratchpad':[]},
                                         {"recursion_limit": 20},):
-            print(state)
+            #print(state)
+            if state.get('resource_requestor', None):
+                briefing = state['resource_requestor']['messages'][-1].content
+            if state.get('ngo_router', None):
+                ngo_output = state['ngo_router']['messages'][-1].messages[-1].content
+            
+        briefing = briefing.split('<result>')[-1].strip('</result>')
+        ngo_output = ngo_output_to_list(ngo_output)
+        print("Briefing:", briefing)
+        print("NGO Output:", ngo_output)
+        return {'report': briefing, 'ngos': ngo_output}
+
 
 if __name__ == "__main__":
     ma = MAGraph()
-    ma.invoke("testing")
+    ma.invoke()
             
 
 
