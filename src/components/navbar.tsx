@@ -4,8 +4,9 @@ import Link from 'next/link';
 
 export default function Navbar () {
   return (
-    <nav className="bg-gray-800 p-4">
-      <div className="max-w-7xl mx-auto">
+    <div className="z-20">
+      <nav className="bg-gray-800 p-4" id='navbar'>
+      <div className="max-w-7xl mx-auto z-10">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
             <span className="text-white text-lg font-semibold">aidgentic</span>
@@ -39,6 +40,8 @@ export default function Navbar () {
         </div>
       </div>
     </nav>
+    </div>
+
   );
 };
 

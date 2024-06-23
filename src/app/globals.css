@@ -1,6 +1,6 @@
 @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
+@tailwind components;
+@tailwind utilities;
 
   @layer base {
     :root {
@@ -73,4 +73,78 @@
     body {
       @apply bg-background text-foreground;
     }
+  }
+
+  #home {
+    background-image: url('https://images2.alphacoders.com/719/719970.jpg');
+    min-width: 100vw;
+  }
+
+  .accord{
+    padding: 0rem 2rem;
+    margin: 2rem 0rem;
+  }
+
+  #navbar{
+    position: absolute;
+    top: 0;
+    min-width: 100vw;
+    background-color: transparent;
+  }
+
+  #navbar:hover{
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .acme-regular {
+    font-family: "Acme", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .pt-mono-regular {
+    font-family: "PT Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  #reports {
+    background-image: url('https://images2.alphacoders.com/719/719970.jpg');
+    min-width: 100vw;
+    min-height: 100vh;
+  }
+
+  #report {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5rem 10rem;
+    min-width: 80vw;
+    border-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+  }
+
+  #reports-accord {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .reports-accord:hover{
+    text-decoration: none;
+    color: rgb(106, 233, 245);
+  }
+
+  .accord-content:hover {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 12px;
+  }
+
+  .accord-content:hover a{
+    color: rgb(2, 71, 71);
+  }
+
+  .accord-content a{
+    color: rgb(146, 247, 247);
   }
