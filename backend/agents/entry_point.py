@@ -117,7 +117,7 @@ class MAGraph():
         ngo_output = ngo_output_to_list(ngo_output)
         print("Briefing:", briefing)
         print("NGO Output:", ngo_output)
-        return {'report': briefing, 'ngos': ngo_output}
+        return {'report': briefing, 'ngo_names': ngo_output}
 
 
 if __name__ == "__main__":

@@ -17,7 +17,9 @@ graph = MAGraph()
 async def invoke():
     data = graph.invoke()
 
-    ngo_names = data['ngo_names']
+    print('data', data)
+
+    ngo_names = [x['name'] for x in data['ngo_names']]
     report = data['report']
 
     try:

@@ -7,10 +7,13 @@ import csv
 
 async def test():
   # test post
-  # result = requests.post('http://localhost:8000/invoke')
+  result = requests.post('http://localhost:8000/invoke')
 
-  # print(result.json())
+  print(result.json())
 
+
+
+async def test_notification():
   ngo_ids = [
     '1',
     '2',
@@ -45,7 +48,7 @@ async def test():
       #     'ngo_id': ngo_id,
       #     'report': report,
       #     'timestamp': datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-      # }))
+      # }
 
 
 if __name__ == '__main__':
