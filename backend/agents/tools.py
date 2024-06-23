@@ -109,37 +109,37 @@ def get_ngos_for_region(
     '''
     print("Called get_ngos_for_region with region:", region)
     all_ngos = [
-    {
-        "name": "red-cross",
-        "region": "us",
-        "date": "6-22-2024",
-        "resources": "shelter locations, first aid"
-    },
-    {
-        "name": "red-cross",
-        "region": "canada",
-        "date": "6-22-2024",
-        "resources": "shelter locations, first aid"
-    },
-    {
-        "name": "United Nations Children's Fund",
-        "region": "world",
-        "date": "6-22-2024",
-        "resources": "humanitarian assistance"
-    },
-    {
-        "name": "World Food Program",
-        "region": "world",
-        "date": "6-22-2024",
-        "resources": "food"
-    },
-    {
-        "name": "California fire foundation",
-        "region": "CA",
-        "date": "6-22-2024",
-        "resources": "funding"
-    },
-]
+        {
+            "name": "red-cross",
+            "region": "us",
+            "date": "6-22-2024",
+            "resources": "shelter locations, first aid"
+        },
+        {
+            "name": "red-cross",
+            "region": "canada",
+            "date": "6-22-2024",
+            "resources": "shelter locations, first aid"
+        },
+        {
+            "name": "United Nations Children's Fund",
+            "region": "world",
+            "date": "6-22-2024",
+            "resources": "humanitarian assistance"
+        },
+        {
+            "name": "World Food Program",
+            "region": "world",
+            "date": "6-22-2024",
+            "resources": "food"
+        },
+        {
+            "name": "California fire foundation",
+            "region": "CA",
+            "date": "6-22-2024",
+            "resources": "funding"
+        },
+    ]
     return all_ngos
 
 def ngo_output_to_list(output: str):
