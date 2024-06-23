@@ -148,3 +148,32 @@
   .accord-content a{
     color: rgb(146, 247, 247);
   }
+
+  #sidebar {
+    background-color: rgba(255, 251, 251, 0.75);
+    color: black;
+  }
+
+  .sidebar-item:hover {
+    color: white;
+  }
+
+  #dash {
+    padding-top: 5rem;
+    background-color: rgba(0, 0, 0, 0.75);
+
+  }
+
+  #resource-main {
+    background-color: rgba(255, 251, 251, 0.75);
+  }
+
+  #resources {
+    background-image: url('https://images2.alphacoders.com/719/719970.jpg');
+    min-width: 100vw;
+    min-height: 100vh;
+  }
+
+  #notifs {
+    margin-left: 1.5rem;
+  }
