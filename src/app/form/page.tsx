@@ -8,10 +8,12 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { timeStamp } from "console";
 
 const FormPage: React.FC = () => {
   const [formData, setFormData] = useState({
-    location: "",
+    city: "",
+    state: "",
     name: "",
     topic: "",
     description: "",
@@ -34,13 +36,21 @@ const FormPage: React.FC = () => {
     e.preventDefault();
     // console.log('Form Data Submitted:', formData);
 
+
+    const currentTimestamp = Date.now();
+    console.log(currentTimestamp); // Output: current timestamp in milliseconds
+    const currentDate = new Date();
+    const formattedDate = currentDate.toLocaleString();
+    console.log(formattedDate); // Output: formatted date and time
+    const dataWithTimestamp = { ...formData, timestamp: formattedDate };
+
     try {
       const response = await fetch("/api/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(dataWithTimestamp),
       });
 
       const result = await response.json();
@@ -48,7 +58,8 @@ const FormPage: React.FC = () => {
 
       // Reset form fields after submission
       setFormData({
-        location: "",
+        city: "",
+        state: "",
         name: "",
         topic: "",
         description: "",
@@ -78,17 +89,33 @@ const FormPage: React.FC = () => {
             <div className="rounded-md shadow-sm -space-y-px">
               <div className="space-y-4">
                 <label htmlFor="location" className="sr-only">
-                  Location
+                  City
                 </label>
                 <input
-                  id="location"
-                  name="location"
+                  id="city"
+                  name="city"
                   type="text"
-                  autoComplete="location"
+                  autoComplete="city"
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  placeholder="Location"
-                  value={formData.location}
+                  placeholder="City"
+                  value={formData.city}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="space-y-4">
+                <label htmlFor="location" className="sr-only">
+                  State
+                </label>
+                <input
+                  id="state"
+                  name="state"
+                  type="text"
+                  autoComplete="state"
+                  required
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  placeholder="State"
+                  value={formData.state}
                   onChange={handleChange}
                 />
               </div>

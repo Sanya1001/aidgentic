@@ -1,16 +1,11 @@
 [
   {
-    "location": "X",
+    "city": "EL",
+    "state": "MI",
     "name": "Sania Sinha",
     "topic": "SOS",
     "description": "Something",
-    "peopleAffected": "20"
-  },
-  {
-    "location": "Y",
-    "name": "Sonya",
-    "topic": "SOS",
-    "description": "Something else",
-    "peopleAffected": "20"
+    "peopleAffected": "20",
+    "timestamp": "6/22/2024, 5:17:30 PM"
   }
 ]
