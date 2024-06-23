@@ -91,7 +91,7 @@ export function NotifCard({ className, ...props }: CardProps) {
         <Button className="w-full">
           <Check className="mr-2 h-4 w-4" /> Mark all as read
         </Button>
-        <Button className="w-full" onClick={handleRefresh} id="refresh-button">Refresh</Button>
+        <Button className="w-full" onClick={handleRefresh} id="refresh-button">ReSync</Button>
       </CardFooter>
     </Card>
   )

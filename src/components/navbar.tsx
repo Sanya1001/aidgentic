@@ -9,7 +9,7 @@ export default function Navbar () {
       <div className="max-w-7xl mx-auto z-10">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
-            <span className="text-white text-lg font-semibold">aidgentic</span>
+            <span className="text-white text-lg font-semibold">sync</span>
           </div>
           <div className="flex space-x-4">
             <a
