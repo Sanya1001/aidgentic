@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 import json
-from backend.agents.entry_point import MAGraph
+from agents.entry_point import MAGraph
 import csv
 import datetime
 from dotenv import load_dotenv

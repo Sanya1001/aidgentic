@@ -9,10 +9,10 @@ import functools
 from typing import List, Tuple, Literal
 from langgraph.prebuilt import ToolNode
 from langchain_anthropic import ChatAnthropic
-from backend.agents.tools import (
+from agents.tools import (
     search_disaster_knowledge_base,
 )
-from backend.agents.agents import (
+from agents.agents import (
     create_agent,
     reporter_agent,
     resource_agent,
@@ -20,7 +20,7 @@ from backend.agents.agents import (
     AgentState,
     NGOList
 )
-from backend.agents.prompts import PROMPTS
+from agents.prompts import PROMPTS
 class MAGraph():
     def __init__(self, model='claude-3-opus-20240229'):
         self.model = model
