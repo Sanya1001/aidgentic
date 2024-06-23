@@ -19,23 +19,21 @@ async def test():
 
   report = 'This is a report'
 
-  with open(r'./data/notifications.csv', 'a', newline='') as f:
+  with open(r'./data/notifications.jsonl', 'a', newline='') as f:
     # update json file.
-    # add new document for each ngo_id and report
 
-    fieldnames = ['ngo_id', 'timestamp', 'resources', 'report']
+    # fieldnames = ['ngo_id', 'timestamp', 'report']
 
     for ngo_id in ngo_ids:
       new_row = {
         "ngo_id": ngo_id,
-        'timestamp': datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'), 
-        'resources': 'resources', 
+        'timestamp': datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
         'report': 'report'
       }
       
-      writer = csv.DictWriter(f, fieldnames=fieldnames)
-
-      writer.writerow(new_row)
+      # add new row to jsonl file
+      
+      f.write(json.dumps(new_row) + '\n')
 
       #   {
       #     'ngo_id': ngo_id,
