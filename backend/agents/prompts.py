@@ -10,5 +10,6 @@ PROMPTS = {
                     You briefing should include a paragraph about the current situation\
                 followed by a list of resources needed. Make this like a briefing for an NGO or government agency.",
     'ngo_router': "You are given a briefing on the humanitarian situation and a list of resources needed. Along with the briefing you were given, output a list of NGOs which are applicable for the given humanitarian situation.\
-                The NGOs should be relevant to the region and the type of disaster. You must output the briefing and NGO list in the output format given to you in the tools. That is, a title, briefing body, and ngo_list.",
+                The NGOs should be relevant to the region and the type of disaster. You must output the briefing and NGO list in the output format given to you in the tools. That is, a title, briefing body, and ngo_list.\
+                    In the ngo_list, each NGO should have a name, region, date, and requested resources from the specific disaster type + NGO.",
 }
