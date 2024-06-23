@@ -180,25 +180,40 @@
 
   #notif-card {
     background-color: rgba(255, 251, 251, 0.75);
+    margin-left: 1rem;
   }
 
-  #second-row {
-    display: flex;
-    flex-direction: row;
-    border: solid;
-    margin-left: 3rem;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .car-item {
+  /* .car-item {
     margin: 1rem;
     padding: 1rem;
     border-radius: 12px;
-  }
+  } */
 
   #resource-car {
-     border: solid;
-     width: 50%;
+     width: 90%;
+     margin-left: 3rem;
   }
+
+  .car-content {
+    background-color: rgba(255, 251, 251, 0.75);
+  }
+
+  #third-row {
+    display: flex;
+    flex-direction: row;
+    margin-top: 0px;
+  }
+
+  #report-body {
+    min-width: 100%;
+    background-color: rgba(255, 251, 251, 0.75);
+    border: solid;
+  }
+
+  #report-card {
+    min-width: 60%;
+  }
+
+  /* .trans {
+    background-color: rgba(255, 251, 251, 0.75);
+  } */
