@@ -10,7 +10,7 @@
   {"timestamp": "2025-04-21", 
   "read": true,
   "state": "CA",
-  "city": "Los Angeles", 
+  "city": "Sacramento", 
   "topic": "Earthquake",
   "affected_population": "5000",
       "description": "Earthquake in Sacramento. Roads collapsed into deep holes and buildings collapsed. at least 1 neighborhood is on fire."
