@@ -45,5 +45,15 @@
     "affected_population": "50",
     "peopleAffected": "`",
     "timestamp": "6/23/2024, 1:10:56 AM"
+  },
+  {
+    "read": false,
+    "city": "San Jose",
+    "state": "CA",
+    "name": "Sanya",
+    "topic": "Poor air quality ",
+    "description": "There is bad air quality in this area and people are facing respirartory issues",
+    "affected_population": "50",
+    "timestamp": "6/23/2024, 2:10:55 AM"
   }
 ]

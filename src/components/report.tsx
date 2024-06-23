@@ -41,7 +41,7 @@ export function Report(){
         <div>
             <Card id="report-body">
                 <CardHeader>
-                    <CardTitle>{report?.title}</CardTitle>
+                    <CardTitle>{report?.title || "No reports right now"}</CardTitle>
                     <CardDescription>{report?.timestamp}</CardDescription>
                 </CardHeader>
                 <CardContent>
