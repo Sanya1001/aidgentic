@@ -113,19 +113,14 @@ def get_ngos_for_region(
             "name": "Red Cross US",
             "region": "us",
             "date": "6-22-2024",
-            "resources": "shelter locations, first aid"
-        },
-        {
-            "name": "Red Cross Canada",
-            "region": "canada",
-            "date": "6-22-2024",
-            "resources": "shelter locations, first aid"
+            'description': 'provides emergency assistance, disaster relief, and disaster preparedness education in the United States',
+            "resources": "shelter, first aid, food"
         },
         {
             "name": "United Nations Children's Fund",
             "region": "world",
             "date": "6-22-2024",
-            "resources": "humanitarian assistance"
+            "resources": "medical equipment, sanitation kits, temporary learning spaces, health services, including identifying and treating malnourished children and dispatching mobile health teams"
         },
         {
             "name": "World Food Program",
@@ -137,8 +132,20 @@ def get_ngos_for_region(
             "name": "California Fire Foundation",
             "region": "CA",
             "date": "6-22-2024",
-            "resources": "funding"
+            "resources": "funding support to survivors of large-scale disasters in California"
         },
+        {
+            'name': 'ShelterBox',
+            'region': 'world',
+            'date': '6-22-2024',
+            'resources': 'emergency shelter, tools, and other essential items to people who have lost their homes as a result of disaster or conflict'
+        },
+        {
+            'name': 'Florida Humane Society',
+            'region': 'FL',
+            'date': '6-22-2024',
+            'resources': 'pet food, shelter, and medical care for pets in Florida'
+        }
     ]
     return all_ngos
 
