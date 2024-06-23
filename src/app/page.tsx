@@ -19,7 +19,7 @@ export default function Home() {
         Your browser does not support the video tag.
       </video> */}
       <div className="container mx-auto text-center z-10" id="landing">
-        <h1 className="text-5xl font-bold text-white mb-8 acme-regular">Welcome, Sanya</h1>
+        <h1 className="text-5xl font-bold text-white mb-8 acme-regular">Welcome, Siddhartha</h1>
         <p className="text-lg text-white pt-mono-regular">There is an ACTIVE wildfire situation in New Mexico, California</p>
       </div>
     </div>

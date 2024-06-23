@@ -24,10 +24,10 @@ interface Report {
 export function ReportOnly(){
 
     const [report, setReport] = useState<Report | null>(null);
-    const id = "California Fire Foundation";
-
+    const id = "UNICEF";
+    const SERVER_IP = '127.0.0.1:8000';
     useEffect(() => {
-        fetch('/api/reports')
+        fetch(`<http://${SERVER_IP}/notifications>`) 
         .then((response) => response.json())
         .then((data) => {
             console.log(data);

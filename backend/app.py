@@ -23,44 +23,52 @@ app.add_middleware(
 
 graph = MAGraph()
 
-
+NOTIFICATION_FILE = r'./data/notifications.json'
+SUBMISSIONS_FILE = r'./data/submissions.json'
 @app.post('/invoke')
 async def invoke():
-    data = graph.invoke()
+    with open(SUBMISSIONS_FILE, 'r') as f:
+        data = json.load(f)
+    print([report['read'] for report in data])
+    if all (report['read'] for report in data):
+        print('All reports have been read')
+        return {'message': 'All reports have been read'}
+    with open(NOTIFICATION_FILE, 'w', newline='') as f:
+        data = graph.invoke()
+        report = data['body']
+        title = data['title']
 
-    print('data', data)
+        try:
+            current_notifications = json.load(open(NOTIFICATION_FILE, 'r'))
+        except json.decoder.JSONDecodeError:
+            current_notifications = []
+            for ngo in data['ngo_list']:
+                new_row = {
+                    "title": title,
+                    "ngo_name": ngo['name'],
+                    'resources': ngo['resources'],
+                    'timestamp': ngo.get('date', datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')),
+                    'report': report
+                }
 
-    report = data['body']
-    title = data['title']
+                current_notifications.append(new_row)
 
-    try:
-        current_notifications = json.load(open(r'./data/notifications.json', 'r'))
-    except json.decoder.JSONDecodeError:
-        current_notifications = []
+            # add new row to jsonl file
 
-    with open(r'./data/notifications.json', 'w', newline='') as f:
-        # update json file.
+            f.write(json.dumps(current_notifications, indent=2))
 
-        # fieldnames = ['ngo_id', 'timestamp', 'report']
-        for ngo in data['ngo_list']:
-            new_row = {
-                "title": title,
-                "ngo_name": ngo['name'],
-                'resources': ngo['resources'],
-                'timestamp': ngo.get('date', datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')),
-                'report': report
-            }
-
-            current_notifications.append(new_row)
-
-        # add new row to jsonl file
-
-        f.write(json.dumps(current_notifications, indent=2))
-
+    # set all submissions to read
+    with open(SUBMISSIONS_FILE, 'r') as f:
+        data = json.load(f)
+        for report in data:
+            report['read'] = True
+    with open(SUBMISSIONS_FILE, 'w') as f:
+        json.dump(data, f, indent = 2)
+    return {'message': 'Reports have been sent to NGOs'}
 @app.get('/notifications')  # get all notifications
 async def get_notifications():
     try:
-        current_notifications = json.load(open(r'./data/notifications.json', 'r'))
+        current_notifications = json.load(open(NOTIFICATION_FILE, 'r'))
     except json.decoder.JSONDecodeError:
         current_notifications = []
 
