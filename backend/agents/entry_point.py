@@ -1,4 +1,3 @@
-import getpass
 import os
 from langchain_core.messages import (
     BaseMessage,
@@ -123,7 +122,7 @@ class MAGraph():
 
 if __name__ == "__main__":
     ma = MAGraph()
-    ma.invoke("testing")
+    ma.invoke()
             
 
 
