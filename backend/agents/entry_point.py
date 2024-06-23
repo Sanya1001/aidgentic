@@ -132,11 +132,9 @@ class MAGraph():
         #ngo_output = ngo_output_to_list(ngo_output)
         print("Briefing:", briefing)
         print("NGO Output:", ngo_output)
-<<<<<<< Updated upstream
-        return {'report': briefing, 'ngo_names': ngo_output}
-=======
+
         return ngo_output
->>>>>>> Stashed changes
+
 
 
 if __name__ == "__main__":
