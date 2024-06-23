@@ -14,10 +14,10 @@ const Dashboard2: React.FC = () => {
           Dashboard
         </div> */}
         <nav className="flex-1 p-4">
-          <a href="#" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 sidebar-item">
+          <a href="/resources" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 sidebar-item">
             Overview
           </a>
-          <a href="#" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 sidebar-item">
+          <a href="/resources/v2" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 sidebar-item">
             Reports
           </a>
           <a href="#" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 sidebar-item">
