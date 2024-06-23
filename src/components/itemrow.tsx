@@ -26,6 +26,14 @@ const items = [
         title: "Water",
         quantity: "2 tonnes",
     },
+    {
+        title: "Volunteers",
+        quantity: "20",
+    },
+    {
+        title: "Safety Kit",
+        quantity: "15 sets",
+    },
 
 ]
 
@@ -39,10 +47,10 @@ export function CarouselSize() {
     >
       <CarouselContent className="w-full">
         {items.map((item, index) => (
-          <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+          <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/5">
             <div className="p-1">
-              <Card>
-                <CardContent className="flex flex-col aspect-square items-center justify-center p-6">
+              <Card className="car-content">
+                <CardContent className="flex flex-col aspect-square items-center justify-center p-6 car-content">
                     <span className="text-3xl font-semibold">{item.title}</span>
                     <br />
                   <span className="text-3xl font-semibold">{item.quantity}</span>
