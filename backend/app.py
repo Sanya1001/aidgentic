@@ -2,12 +2,12 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from run import invoke_model
 import json
-
+from backend.agents.entry_point import MAGraph
 import csv
 import datetime
 
 app = FastAPI()
-
+graph = MAGraph()
 # @app.post("/submit")
 # async def submit(data: dict):
 
@@ -21,12 +21,8 @@ async def invoke():
     print('invoking model')
     # load data
     data = json.load(open('./data/submissions.json', 'r'))
-    print(data)
-    return 
-
-
-@app.post('/notify')
-async def notify(data: dict):
+    data = graph.invoke()
+    print('invoked model')
     """
     {
         "ngo_ids": ["name1", "name2", "name3"],
