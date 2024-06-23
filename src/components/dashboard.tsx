@@ -3,8 +3,12 @@ import React from 'react';
 import { NotifCard } from '@/components/notifcard';
 import { CarouselSize } from './itemrow';
 import { Report } from './report';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const Dashboard: React.FC = () => {
+  dotenv.config();
   return (
     <div className="min-h-screen flex" id='dash'>
       {/* Sidebar */}
@@ -35,8 +39,8 @@ const Dashboard: React.FC = () => {
         <main className="flex-1 p-4" id='resource-content'>
           <div className="container mx-auto">
             <div className="bg-white p-6 rounded shadow" id='resource-main'>
-              <h2 className="text-2xl font-semibold mb-4">Dashboard: California Fire Foundation</h2>
-              <p>Welcome Sanya, your organization has a call to respond to the ongoing wildfire crisis in New Mexico, California.</p>
+              <h2 className="text-2xl font-semibold mb-4">Dashboard: {process.env.NGO_NAME || "California Fire Foundation"}</h2>
+              <p>Welcome {process.env.USER_NAME}, your organization has a call to respond to the ongoing wildfire crisis in New Mexico, California.</p>
             </div>
           </div>
           <div className="p-6 rounded shadow" id='resource-car'>
