@@ -110,13 +110,13 @@ def get_ngos_for_region(
     print("Called get_ngos_for_region with region:", region)
     all_ngos = [
         {
-            "name": "red-cross",
+            "name": "Red Cross US",
             "region": "us",
             "date": "6-22-2024",
             "resources": "shelter locations, first aid"
         },
         {
-            "name": "red-cross",
+            "name": "Red Cross Canada",
             "region": "canada",
             "date": "6-22-2024",
             "resources": "shelter locations, first aid"
@@ -134,7 +134,7 @@ def get_ngos_for_region(
             "resources": "food"
         },
         {
-            "name": "California fire foundation",
+            "name": "California Fire Foundation",
             "region": "CA",
             "date": "6-22-2024",
             "resources": "funding"

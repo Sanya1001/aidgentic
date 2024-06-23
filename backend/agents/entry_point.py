@@ -114,16 +114,16 @@ class MAGraph():
         for state in self.graph.stream({"messages": [HumanMessage(content="", name=""),],
                                         'agent_scratchpad':[]},
                                         {"recursion_limit": 20},):
-            print(state)
+            #print(state)
             if state.get('resource_requestor', None):
                 briefing = state['resource_requestor']['messages'][-1].content
             if state.get('ngo_router', None):
                 ngo_output = state['ngo_router']['messages'][-1].tool_calls[0]['args']
                 break
         briefing = briefing.split('<result>')[-1].strip('</result>')
+        briefing = briefing.split('</thinking>')[-1].strip('</thinking>')
         ngo_output['body'] = briefing
         #ngo_output = ngo_output_to_list(ngo_output)
-        print("Briefing:", briefing)
         print("NGO Output:", ngo_output)
 
         return ngo_output

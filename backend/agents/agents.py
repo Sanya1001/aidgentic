@@ -7,16 +7,16 @@ from langchain_core.messages import (
     HumanMessage,
     ToolMessage,
 )
-from typing import List
+from typing import List, TypedDict, Literal
 # import runnable
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 import operator
-from typing import Annotated, Sequence, TypedDict
+from typing import Annotated, Sequence, Dict
 from langchain_core.runnables.base import RunnableSequence
 from langchain_core.messages import AIMessage
 from langchain_core.messages import BaseMessage, HumanMessage
 from langchain_core.pydantic_v1 import BaseModel, Field
-
+from enum import Enum
 from agents.tools import(
     read_database,
     get_ngos_for_region,
@@ -31,12 +31,25 @@ class AgentState(TypedDict):
     sender: str
     briefing: str = ""
 
+# Define a type alias for the NGO name using Literal and the values from the RegisteredNGOs enum
+NGOName = Literal[
+    "Red Cross US",
+    "Red Cross Canada",
+   "United Nations Children's Fund",
+    "World Food Program",
+    "California Fire Foundation",
+]
+
+class NGO(TypedDict):
+    name: NGOName  # Use the type alias here
+    region: str
+    date: str
+    resources: str
 class NGOList(BaseModel):
     '''
     Required output structure for the ngo_agent
     '''
-    ngo_list: List[dict] = Field(description="List of NGOs who cover the given region and have applicable resources." +\
-                                 "Each NGO should have a name, region, date, and requested resources from the specific disaster type + NGO")
+    ngo_list: List[NGO] = Field(description="List of NGOs. Each NGO should have a name, region, date, and requested resources from this NGO for the situation at hand")
     title: str = Field(description="Title of the briefing.")
     body: str = Field(description="Body of the briefing.")
 def create_agent(llm, tools, system_prompt: str):
@@ -69,7 +82,7 @@ def reporter_agent(state, agent, name):
     result = agent.invoke(state)
     # We convert the agent output into a format that is suitable to append to the global state
     result = HumanMessage(**result.dict(exclude={"type", "name"}), name=name)
-    print('aggregator_agent returning')
+    print('regional reporting agent returning')
     ret= {
         "messages": [result],
         # Since we have a strict workflow, we can
