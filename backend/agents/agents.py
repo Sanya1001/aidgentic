@@ -35,7 +35,8 @@ class NGOList(BaseModel):
     '''
     Required output structure for the ngo_agent
     '''
-    ngo_list: List[dict] = Field(description="List of NGOs who cover the given region and have applicable resources.")
+    ngo_list: List[dict] = Field(description="List of NGOs who cover the given region and have applicable resources." +\
+                                 "Each NGO should have a name, region, date, and requested resources.")
     title: str = Field(description="Title of the briefing.")
     body: str = Field(description="Body of the briefing.")
 def create_agent(llm, tools, system_prompt: str):

@@ -142,6 +142,3 @@ if __name__ == "__main__":
     ma = MAGraph()
     ma.invoke()
             
-
-
-                
