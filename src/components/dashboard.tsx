@@ -47,7 +47,7 @@ const Dashboard: React.FC = () => {
               <NotifCard />
             </div>
             <div className="p-6 rounded shadow" id='report-card'>
-              <Report/>
+              <Report />
             </div>
           </div>
             

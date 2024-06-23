@@ -7,7 +7,7 @@ interface Report {
     timestamp: string;
     report: string;
   }
-  
+
 // Define the path to the JSON file
 const dataFilePath = path.join(process.cwd(), 'data', 'notifications.json');
 
