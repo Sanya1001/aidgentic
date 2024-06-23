@@ -181,3 +181,24 @@
   #notif-card {
     background-color: rgba(255, 251, 251, 0.75);
   }
+
+  #second-row {
+    display: flex;
+    flex-direction: row;
+    border: solid;
+    margin-left: 3rem;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .car-item {
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 12px;
+  }
+
+  #resource-car {
+     border: solid;
+     width: 50%;
+  }

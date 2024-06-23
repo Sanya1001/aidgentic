@@ -1,6 +1,7 @@
 // pages/dashboard.tsx
 import React from 'react';
 import { NotifCard } from '@/components/notifcard';
+import { CarouselSize } from './itemrow';
 
 const Dashboard: React.FC = () => {
   return (
@@ -37,8 +38,13 @@ const Dashboard: React.FC = () => {
               <p>Welcome Sanya, your organization has a call to respond to the ongoing wildfire crisis in New Mexico, California.</p>
             </div>
           </div>
-          <div className="p-6 rounded shadow" id='notifs'>
-            <NotifCard />
+          <div className="p-6 rounded shadow" id='second-row'>
+          <div className="p-6 rounded shadow car-item" id='resource-car'>
+            <CarouselSize />
+          </div>
+            <div className="p-6 rounded shadow car-item" id='notifs'>
+              <NotifCard />
+            </div>
           </div>
         </main>
       </div>
