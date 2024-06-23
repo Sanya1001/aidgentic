@@ -30,9 +30,7 @@ const FormPage: React.FC = () => {
     .then((response) => response.json())
     .then((data) => {
         console.log(data);
-        setReport(data.message);
-        // const matchingReport = data.message.reverse().find((report: Report) => report.ngo_name == id);
-        // setReport(matchingReport || null);
+        setReport(data.message.reverse());
       })
     .catch((error) => console.error('Error fetching reports:', error));
 }, []);
@@ -195,17 +193,17 @@ const FormPage: React.FC = () => {
                 />
               </div>
               <div className="space-y-4">
-                <label htmlFor="peopleAffected" className="sr-only">
+                <label htmlFor="affected_population" className="sr-only">
                   People Affected
                 </label>
                 <input
-                  id="peopleAffected"
-                  name="peopleAffected"
+                  id="affected_population"
+                  name="affected_population"
                   type="text"
-                  autoComplete="people-affected"
+                  autoComplete="affected_population"
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  placeholder="People Affected"
+                  placeholder="Affected Population"
                   value={formData.affected_population}
                   onChange={handleChange}
                 />
@@ -224,9 +222,21 @@ const FormPage: React.FC = () => {
       </div>
 
       <Accordion type="single" collapsible className="w-full accord" id="reports-accord">
+
+      {reports.map((report, index) => (
+          <AccordionItem key={index} value={`item-${index + 2}`}>
+            <AccordionTrigger className="reports-accord">
+              {report.topic}
+            </AccordionTrigger>
+            <AccordionContent className="accord-content">
+              {report.description}
+            </AccordionContent>
+          </AccordionItem>
+        ))}
+
         <AccordionItem value="item-1">
           <AccordionTrigger className="reports-accord">
-            [ONGOING] Report from California Office of the Governor
+            Report from California Office of the Governor
           </AccordionTrigger>
           <AccordionContent className="accord-content">
           SACRAMENTO – As hot, dry conditions and strong winds continue to propel dangerous wildfire conditions across the West, Governor Gavin Newsom today announced the deployment of fire and rescue personnel to New Mexico to aid in human remains detection coordination and recovery efforts.
@@ -246,16 +256,6 @@ This deployment builds on California’s far-reaching efforts to aid other state
  </a>
           </AccordionContent>
         </AccordionItem>
-        {reports.map((report, index) => (
-          <AccordionItem key={index} value={`item-${index + 2}`}>
-            <AccordionTrigger className="reports-accord">
-              {report.topic}
-            </AccordionTrigger>
-            <AccordionContent className="accord-content">
-              {report.description}
-            </AccordionContent>
-          </AccordionItem>
-        ))}
         {/* <AccordionItem value="item-2">
           <AccordionTrigger className="reports-accord">
             Report from citizen about wildfire sighting

@@ -1,36 +1,49 @@
 [
-  {"timestamp": "2025-04-21", 
-   "state": "CA",
-   "read": true,
-   "city": "San Francisco", 
-   "topic": "Earthquake",
-   "affected_population": "5935",
+  {
+    "timestamp": "2025-04-21",
+    "state": "CA",
+    "read": true,
+    "city": "San Francisco",
+    "topic": "Earthquake",
+    "affected_population": "5935",
     "description": "Earthquake hit residential area in San Jose. Buildings have collapsed and cars are on fire. People are trapped. Need immediate help."
   },
-  {"timestamp": "2025-04-21", 
-  "read": true,
-  "state": "CA",
-  "city": "Sacramento", 
-  "topic": "Earthquake",
-  "affected_population": "5000",
-      "description": "Earthquake in Sacramento. Roads collapsed into deep holes and buildings collapsed. at least 1 neighborhood is on fire."
-  }, 
   {
-  "timestamp": "2024-05-23",
-  "state": "CA",
-  "read": false,
-  "city": "San Diego",
-  "topic": "Wildfire",
-  "affected_population": "7500",
-  "description": "A massive wildfire has broken out in the outskirts of San Diego. Flames are spreading rapidly towards residential areas. Evacuations are underway, but many homes are at risk. Firefighters are struggling to control the blaze due to strong winds."
+    "timestamp": "2025-04-21",
+    "read": true,
+    "state": "CA",
+    "city": "Sacramento",
+    "topic": "Earthquake",
+    "affected_population": "5000",
+    "description": "Earthquake in Sacramento. Roads collapsed into deep holes and buildings collapsed. at least 1 neighborhood is on fire."
   },
   {
-  "timestamp": "2024-05-23",
-  "state": "CA",
-  "read": false,
-  "city": "Santa Barbara",
-  "topic": "Wildfire",
-  "affected_population": "3200",
-  "description": "A wildfire has ignited in the hills near Santa Barbara. While not as severe as other fires, it poses a significant threat to local vineyards and rural homes. Firefighting efforts are in progress, but resources are stretched thin."
+    "timestamp": "2024-05-23",
+    "state": "CA",
+    "read": false,
+    "city": "San Diego",
+    "topic": "Wildfire",
+    "affected_population": "7500",
+    "description": "A massive wildfire has broken out in the outskirts of San Diego. Flames are spreading rapidly towards residential areas. Evacuations are underway, but many homes are at risk. Firefighters are struggling to control the blaze due to strong winds."
+  },
+  {
+    "timestamp": "2024-05-23",
+    "state": "CA",
+    "read": false,
+    "city": "Santa Barbara",
+    "topic": "Wildfire",
+    "affected_population": "3200",
+    "description": "A wildfire has ignited in the hills near Santa Barbara. While not as severe as other fires, it poses a significant threat to local vineyards and rural homes. Firefighting efforts are in progress, but resources are stretched thin."
+  },
+  {
+    "read": false,
+    "city": "San Jose",
+    "state": "CA",
+    "name": "Sanya",
+    "topic": "Emergency Air Quality situation",
+    "description": "the air quality is going down and people are having breathing issues",
+    "affected_population": "50",
+    "peopleAffected": "`",
+    "timestamp": "6/23/2024, 1:10:56 AM"
   }
 ]

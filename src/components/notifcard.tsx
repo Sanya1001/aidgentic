@@ -41,7 +41,7 @@ export function NotifCard({ className, ...props }: CardProps) {
           <BellRing />
           <div className="flex-1 space-y-1">
             <p className="text-sm font-medium leading-none">
-              Push Notifications
+              Email Notifications
             </p>
             <p className="text-sm text-muted-foreground">
               Send notifications to device.
