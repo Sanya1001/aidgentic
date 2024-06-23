@@ -5,10 +5,22 @@ from backend.agents.entry_point import MAGraph
 import csv
 import datetime
 from dotenv import load_dotenv
+from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv()
 
+# allow all CORS requests
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=['*'],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
 graph = MAGraph()
 
 

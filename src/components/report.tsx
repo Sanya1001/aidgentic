@@ -12,6 +12,9 @@ import {
 } from "@/components/ui/card"
 import { get } from "http";
 import { time } from "console";
+import dotenv  from 'dotenv';
+
+dotenv.config();
 
 interface Report {
     title: string;
@@ -21,21 +24,19 @@ interface Report {
     report: string;
   }
 
+const SERVER_IP = 'localhost:8000';
+const ngo_name = process.env.NGO_NAME || "California Fire Foundation";
+
 export function Report(){
 
     const [report, setReport] = useState<Report | null>(null);
-    const id = "California Fire Foundation";
 
     useEffect(() => {
-        fetch('/api/reports')
-        .then((response) => response.json())
-        .then((data) => {
-            console.log(data);
-            const matchingReport = data.message.reverse().find((report: Report) => report.ngo_name == id);
-            setReport(matchingReport || null);
-          })
-        .catch((error) => console.error('Error fetching reports:', error));
-    }, []);
+        fetch(`http://${SERVER_IP}/notifications`).then(async res => {
+            const data = (await res.json()) as Report[];
+            const matchingReport = data.reverse().find((report: Report) => report.ngo_name == ngo_name);
+            setReport(matchingReport || null);}
+        )}, [])
 
     return (
         <div>
