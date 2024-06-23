@@ -40,20 +40,9 @@
     "city": "San Jose",
     "state": "CA",
     "name": "Sanya",
-    "topic": "Emergency Air Quality situation",
-    "description": "the air quality is going down and people are having breathing issues",
+    "topic": "Poor Air Quality",
+    "description": "The air quality has been decreasing and people are having respiratory issues.",
     "affected_population": "50",
-    "peopleAffected": "`",
-    "timestamp": "6/23/2024, 1:10:56 AM"
-  },
-  {
-    "read": false,
-    "city": "San Jose",
-    "state": "CA",
-    "name": "Sanya",
-    "topic": "Poor air quality ",
-    "description": "There is bad air quality in this area and people are facing respirartory issues",
-    "affected_population": "50",
-    "timestamp": "6/23/2024, 2:10:55 AM"
+    "timestamp": "6/23/2024, 4:35:11 AM"
   }
 ]

@@ -24,7 +24,7 @@ interface Report {
     report: string;
   }
 
-const SERVER_IP = '192.168.85.57:8000';
+const SERVER_IP = '192.168.0.24:8000';
 const ngo_name = process.env.NGO_NAME || "California Fire Foundation";
 
 export function Report(){

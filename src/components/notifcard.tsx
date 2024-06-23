@@ -32,7 +32,7 @@ type CardProps = React.ComponentProps<typeof Card>
 export function NotifCard({ className, ...props }: CardProps) {
 
   const handleRefresh = async () => {
-    const SERVER_IP = '192.168.85.57:8000';
+    const SERVER_IP = '192.168.0.24:8000';
     try {
       const response = await fetch(`http://${SERVER_IP}/invoke`, {
         method: "POST",
@@ -92,7 +92,7 @@ export function NotifCard({ className, ...props }: CardProps) {
         <Button className="w-full">
           <Check className="mr-2 h-4 w-4" /> Mark all as read
         </Button>
-        <Button className="w-full" onClick={handleRefresh} id="refresh-button">ReSync</Button>
+        {/* <Button className="w-full" onClick={handleRefresh} id="refresh-button">ReSync</Button> */}
       </CardFooter>
     </Card>
   )
