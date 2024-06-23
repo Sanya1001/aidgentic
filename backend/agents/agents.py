@@ -75,12 +75,14 @@ def reporter_agent(state, agent, name):
     # We convert the agent output into a format that is suitable to append to the global state
     result = HumanMessage(**result.dict(exclude={"type", "name"}), name=name)
     print('aggregator_agent returning')
-    return {
+    ret= {
         "messages": [result],
         # Since we have a strict workflow, we can
         # track the sender so we know who to pass to next.
         "sender": name,
     }
+    state.update(ret)
+    return ret
     
 
 
@@ -100,6 +102,7 @@ def resource_agent(state, agent, name):
         'sender': name,
         'briefing': result.content
     }
+    state.update(ret)
     return ret
 
 def ngo_agent(state, agent, name):
@@ -116,9 +119,11 @@ def ngo_agent(state, agent, name):
     # We convert the agent output into a format that is suitable to append to the global state
     #result = HumanMessage(**result.dict(exclude={"type", "name"}), name=name)
     print('ngo_agent returning')
-    return {
+    ret= {
         "messages": [result],
         # Since we have a strict workflow, we can
         # track the sender so we know who to pass to next.
         "sender": name,
     }
+    state.update(ret)
+    return ret

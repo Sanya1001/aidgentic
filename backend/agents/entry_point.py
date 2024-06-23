@@ -28,6 +28,7 @@ from langchain_anthropic import ChatAnthropic
 from tools import (
     search_disaster_knowledge_base,
     get_ngos_for_region,
+    ngo_output_to_list
 )
 from agents import (
     create_agent,
@@ -41,9 +42,6 @@ from prompts import PROMPTS
 class MAGraph():
     def __init__(self, model='claude-3-opus-20240229'):
         self.model = model
-        self._setup()
-
-    def _setup(self):
         self._create_agents()
         self._create_graph()
     def _create_agents(self):
@@ -119,10 +117,23 @@ class MAGraph():
             return "call_tool"
         return "continue"
     def invoke(self, prompt):
-        for state in self.graph.stream({"messages": [HumanMessage(content="testing", name="user"),],
+        briefing = None
+        ngo_output = None
+        for state in self.graph.stream({"messages": [HumanMessage(content="", name=""),],
                                         'agent_scratchpad':[]},
                                         {"recursion_limit": 20},):
-            print(state)
+            #print(state)
+            if state.get('resource_requestor', None):
+                briefing = state['resource_requestor']['messages'][-1].content
+            if state.get('ngo_router', None):
+                ngo_output = state['ngo_router']['messages'][-1].messages[-1].content
+            
+        briefing = briefing.split('<result>')[-1].strip('</result>')
+        ngo_output = ngo_output_to_list(ngo_output)
+        print("Briefing:", briefing)
+        print("NGO Output:", ngo_output)
+        return {'report': briefing, 'ngos': ngo_output}
+
 
 if __name__ == "__main__":
     ma = MAGraph()

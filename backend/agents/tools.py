@@ -123,3 +123,22 @@ def get_ngos_for_region(
     },
 ]
     return all_ngos
+
+def ngo_output_to_list(output: str):
+    '''
+    This tool converts the output of the NGO router into a human-readable message.
+    '''
+    output_items = output.split(', ')
+    ngos = []
+    for i, item in enumerate(output_items):
+        if ':' not in item and ngos:
+            item = ngos[-1]['resources'] + ', ' + item
+            ngos[-1]['resources'] = item
+            continue
+    
+        key, val = item.split(': ')
+        if key == 'name':
+            ngos.append({key: val})
+        else:
+            ngos[-1][key] = val
+    return ngos
