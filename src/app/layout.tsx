@@ -22,6 +22,9 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com"/>
         <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet"/>
         <link href="https://fonts.googleapis.com/css2?family=Acme&family=PT+Mono&display=swap" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsvectormap/dist/css/jsvectormap.min.css" />
+        <script src="https://cdn.jsdelivr.net/npm/jsvectormap"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jsvectormap/dist/maps/world.js"></script>
       </Head>
       <body className={inter.className}>
         {children}

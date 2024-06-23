@@ -177,3 +177,7 @@
   #notifs {
     margin-left: 1.5rem;
   }
+
+  #notif-card {
+    background-color: rgba(255, 251, 251, 0.75);
+  }
