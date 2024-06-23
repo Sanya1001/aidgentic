@@ -1,4 +1,5 @@
 fastapi
 requests
-
-
+langchain
+langchain-anthropic
+langgraph
