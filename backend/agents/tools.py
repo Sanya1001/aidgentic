@@ -11,7 +11,6 @@ def search_disaster_knowledge_base(
 ) -> List[dict]:
     '''
     This tool searches the knowledge base for resource requirements for a given disaster type.
-   
     '''
     print("called search_disaster_knowledge_base with disaster_info:", type, location)
     historical_data = {
@@ -30,10 +29,8 @@ def search_disaster_knowledge_base(
                      'food': '$46,640',
                      'water': '$22,040',
                      'shelter': '$1,130,594',
-                     
                  }
                 },
-                
                 {'timestamp': '2024-06-21', 
                  'city': 'Los Angeles', 
                  'topic': 'Earthquake',
@@ -53,39 +50,37 @@ def search_disaster_knowledge_base(
         },
         'wildfire': {
             "california": [
-            {
-                "people affected": 22000,
-                "date": 8-19-2021,
-                "personnel": 5120,
-                "daily_cost": 171,
-                "description": "The fire destroyed 1,005 structures and damaged 81 more, primarily in the US Highway 50 corridor and in the community of Grizzly Flats, 2/3 of which was destroyed by the fire.",
-                "food": "",
-                "water": "",
-                "shelter": "",
-            },
-            { 
-                "people affected": 9500,
-                "date": 7-13-2021,
-                "personnel": 4000,
-                "daily_cost": 171,
-                "description": "",
-                "food": "",
-                "water": "",
-                "shelter": "",
-            },
-            {
-                "people affected": "30000",
-                "date": 10-11-2017,
-                "personnel": 2000,
-                "cost": 1300,
-                "description": "",
-                "food": "",
-                "water": "",
-                "shelter": "",
-                
-            }
+                {
+                    "people affected": 22000,
+                    "date": 8-19-2021,
+                    "personnel": 5120,
+                    "daily_cost": 171,
+                    "description": "The fire destroyed 1,005 structures and damaged 81 more, primarily in the US Highway 50 corridor and in the community of Grizzly Flats, 2/3 of which was destroyed by the fire.",
+                    "food": "",
+                    "water": "",
+                    "shelter": "",
+                },
+                {
+                    "people affected": 9500,
+                    "date": 7-13-2021,
+                    "personnel": 4000,
+                    "daily_cost": 171,
+                    "description": "",
+                    "food": "",
+                    "water": "",
+                    "shelter": "",
+                },
+                {
+                    "people affected": "30000",
+                    "date": 10-11-2017,
+                    "personnel": 2000,
+                    "cost": 1300,
+                    "description": "",
+                    "food": "",
+                    "water": "",
+                    "shelter": "",
+                }
             ]
-            
         }
     }
     return historical_data.get(type.lower(), {}).get(location.upper(), [])
