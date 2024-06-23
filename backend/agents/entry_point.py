@@ -129,6 +129,7 @@ class MAGraph():
                 
             
         briefing = briefing.split('<result>')[-1].strip('</result>')
+        ngo_output['body'] = briefing
         #ngo_output = ngo_output_to_list(ngo_output)
         print("Briefing:", briefing)
         print("NGO Output:", ngo_output)
