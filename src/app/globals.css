@@ -210,6 +210,12 @@
     border: solid;
   }
 
+  #report-body-2 {
+    max-width: 100%;
+    background-color: rgba(255, 251, 251, 0.75);
+    border: solid;
+  }
+
   #report-card {
     min-width: 60%;
   }
