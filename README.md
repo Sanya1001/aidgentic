@@ -15,7 +15,8 @@ The motivation for creating Sync stems from the pressing need to improve disaste
 - **Structured Output from agents for cost projections and optimal NGO routing**: Developing a multi-agent system that can communicate and share information effectively was a challenging but rewarding experience. We also had to ensure that data was structured enough to be served to the frontend
 
 ## Multi-Agent Architecture
-
+- Our novel multi agent system is represented by a state graph. Each node in the graph represents an expert agent. Our entry point nodes are agents who represent humanitarian report aggregators for specific regions. For example, we have one agent who oversees humanitarian crisis reports for the state of California. These regional reporters send a briefing of relevant issues to a cost and resource estimation agent, whose job is to determine which humanitarian resources are needed for the given situation. For example, the resource estimation node will request the appropriate number of fire fighters in response to a forest fire. The requests are then routed to the correct NGOs for the task by an NGO communicator/routing agent.
+  
 ![Untitled-2024-03-06-2342](https://github.com/Sanya1001/aidgentic/assets/23709618/5544d4b5-ae69-4c44-a289-e9a0c49980d1)
 ![Comparison](https://github.com/Sanya1001/aidgentic/blob/main/Sync/Slide12.jpg)
 
