@@ -10,12 +10,12 @@ from langchain_core.messages import BaseMessage, HumanMessage
 from typing import List, Tuple, Literal
 from langgraph.prebuilt import ToolNode
 from langchain_anthropic import ChatAnthropic
-from agents.tools import (
+from tools import (
     search_disaster_knowledge_base,
     get_ngos_for_region,
     ngo_output_to_list
 )
-from agents.agents import (
+from agents import (
     create_agent,
     reporter_agent,
     resource_agent,
@@ -23,7 +23,7 @@ from agents.agents import (
     AgentState,
     NGOList
 )
-from agents.prompts import PROMPTS
+from prompts import PROMPTS
 class MAGraph():
     def __init__(self, model='claude-3-opus-20240229'):
         self.model = model
@@ -48,10 +48,11 @@ class MAGraph():
         )
         resource_requestor_node = functools.partial(resource_agent, agent=resource_requestor, name="resource_requestor")
 
-        ngollm = llm.with_structured_output(NGOList)
+        #ngollm = llm.with_structured_output(NGOList)
         ngo_router = create_agent(
-            ngollm,
-            tools=[],#[get_ngos_for_region],
+            #ngollm,
+            llm,
+            tools=[NGOList],
             system_prompt=PROMPTS['ngo_router']
         )
         ngo_router_node = functools.partial(ngo_agent, agent=ngo_router, name="ngo_router")
@@ -72,22 +73,31 @@ class MAGraph():
         workflow.add_node("resource_requestor", self.resource_requestor_node)
         workflow.add_node("ngo_router", self.ngo_router_node)
         workflow.add_node("call_tool", self.tool_node)
-
         workflow.add_edge('regional_reporter', 'resource_requestor')
+        
         workflow.add_conditional_edges(
             "resource_requestor",
             self.router,
             {"continue": "ngo_router", 
             "call_tool": "call_tool",},
         )
+        # workflow.add_conditional_edges(
+        #     'ngo_router',
+        #     self.router,
+        #     {
+        #     "call_tool": "call_tool",
+        #     '__end__': END},
+        # )
 
         workflow.add_conditional_edges(
             "call_tool",
             lambda x: x["sender"],
             {
                 "resource_requestor": "resource_requestor",
+                #'ngo_router': 'ngo_router'
             },
         )
+
 
 
         workflow.add_edge('ngo_router', END)
@@ -100,7 +110,10 @@ class MAGraph():
         if last_message.tool_calls:
             # The previous agent is invoking a tool
             return "call_tool"
-        return "continue"
+        elif state['sender'] != 'ngo_router':
+            return "continue"
+        else:
+            return "__end__"
     def invoke(self):
         briefing = None
         ngo_output = None
@@ -111,13 +124,19 @@ class MAGraph():
             if state.get('resource_requestor', None):
                 briefing = state['resource_requestor']['messages'][-1].content
             if state.get('ngo_router', None):
-                ngo_output = state['ngo_router']['messages'][-1].messages[-1].content
+                ngo_output = state['ngo_router']['messages'][-1].tool_calls[0]['args']
+                
+                
             
         briefing = briefing.split('<result>')[-1].strip('</result>')
-        ngo_output = ngo_output_to_list(ngo_output)
+        #ngo_output = ngo_output_to_list(ngo_output)
         print("Briefing:", briefing)
         print("NGO Output:", ngo_output)
+<<<<<<< Updated upstream
         return {'report': briefing, 'ngo_names': ngo_output}
+=======
+        return ngo_output
+>>>>>>> Stashed changes
 
 
 if __name__ == "__main__":

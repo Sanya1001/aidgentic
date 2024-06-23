@@ -1,6 +1,3 @@
-import getpass
-import os
-from pprint import pprint
 from typing import Annotated, Any
 # from langchain_community.tools.tavily_search import TavilySearchResults
 from langchain_core.tools import tool
@@ -20,7 +17,7 @@ from langchain_core.messages import AIMessage
 from langchain_core.messages import BaseMessage, HumanMessage
 from langchain_core.pydantic_v1 import BaseModel, Field
 
-from agents.tools import (
+from tools import(
     read_database,
     get_ngos_for_region,
 
@@ -35,8 +32,12 @@ class AgentState(TypedDict):
     briefing: str = ""
 
 class NGOList(BaseModel):
-    ngo_list: List[dict] = Field([], description="List of NGOs who cover the given region and have applicable resources.")
-
+    '''
+    Required output structure for the ngo_agent
+    '''
+    ngo_list: List[dict] = Field(description="List of NGOs who cover the given region and have applicable resources.")
+    title: str = Field(description="Title of the briefing.")
+    body: str = Field(description="Body of the briefing.")
 def create_agent(llm, tools, system_prompt: str):
     """Create an agent."""
     prompt = ChatPromptTemplate.from_messages(
@@ -106,11 +107,12 @@ def ngo_agent(state, agent, name):
     ngos_list = get_ngos_for_region(region='CA')
     usr_msg = ', '.join([f"{k}: {v}" for ngo in ngos_list for k, v in ngo.items()])
     msg = [HumanMessage(content=usr_msg, name=name)]
-    state.update({"messages": msg, 'agent_scratchpad': []})
+    state['messages'] = state['messages'] + msg 
+    state['agent_scratchpad'] = state.get('agent_scratchpad', [])
     result = agent.invoke(state)
 
     # We convert the agent output into a format that is suitable to append to the global state
-    #result = HumanMessage(**result.dict(exclude={"type", "name"}), name=name)
+    result = AIMessage(**result.dict(exclude={"type", "name"}), name=name)
     print('ngo_agent returning')
     ret= {
         "messages": [result],

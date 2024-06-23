@@ -8,6 +8,6 @@ PROMPTS = {
                 Use historical disaster data to project the cost or quantity of each requested resource. When querying the knowledge base, the arguments\
                 should be the disaster type (earthquake, wildfire, etc.) and the state acronym (CA, NY, etc.).\
                 Make this like a briefing for an NGO or government agency.",
-    'ngo_router': "You are given a briefing on the humanitarian situation and a list of resources needed. Provide a list of NGOs which are applicable for the given humanitarian situation.\
-                The NGOs should be relevant to the region and the type of disaster.",
+    'ngo_router': "You are given a briefing on the humanitarian situation and a list of resources needed. Along with the briefing you were given, output a list of NGOs which are applicable for the given humanitarian situation.\
+                The NGOs should be relevant to the region and the type of disaster. You must output the briefing and NGO list in the output format given to you in the tools. That is, a title, briefing body, and ngo_list.",
 }
