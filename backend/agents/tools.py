@@ -86,6 +86,7 @@ def search_disaster_knowledge_base(
     return historical_data.get(type.lower(), {}).get(location.upper(), [])
     
 
+SUBMISSIONS_FILE = r'./data/submissions.json'
 def read_database():
     '''
     This tool reads the database.
@@ -96,6 +97,14 @@ def read_database():
     #print(all_reports)
     reports_list = [report for report in all_reports if not report['read']]
     assert len(reports_list) > 0, "No new reports found"
+
+        # set all submissions to read
+    with open(SUBMISSIONS_FILE, 'r') as f:
+        data = json.load(f)
+        for report in data:
+            report['read'] = True
+    with open(SUBMISSIONS_FILE, 'w') as f:
+        json.dump(data, f, indent = 2)
     return reports_list
     
 

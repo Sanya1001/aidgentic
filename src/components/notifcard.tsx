@@ -32,7 +32,7 @@ type CardProps = React.ComponentProps<typeof Card>
 export function NotifCard({ className, ...props }: CardProps) {
 
   const handleRefresh = async () => {
-    const SERVER_IP = '192.168.0.24:8000';
+    const SERVER_IP = '0.0.0.0:8000';
     try {
       const response = await fetch(`http://${SERVER_IP}/invoke`, {
         method: "POST",

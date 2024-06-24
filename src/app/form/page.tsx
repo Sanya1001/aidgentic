@@ -24,13 +24,13 @@ interface FormData {
 const FormPage: React.FC = () => {
 
   const [reports, setReport] = useState<FormData[] | []>([]);
-
+  const SERVER_IP='0.0.0.0:8000'
   useEffect(() => {
-    fetch('/api/all_reports')
+    fetch(`http://${SERVER_IP}/submissions`)
     .then((response) => response.json())
     .then((data) => {
         console.log(data);
-        setReport(data.message.reverse());
+        setReport(data.reverse());
       })
     .catch((error) => console.error('Error fetching reports:', error));
 }, []);
@@ -59,6 +59,9 @@ const FormPage: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    //post request to 
+
     // console.log('Form Data Submitted:', formData);
 
 
@@ -70,16 +73,36 @@ const FormPage: React.FC = () => {
     const dataWithTimestamp = { ...formData, timestamp: formattedDate };
 
     try {
-      const response = await fetch("/api/submit", {
-        method: "POST",
+      // const response = await fetch("/api/submit", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(dataWithTimestamp),
+      // });
+      const SERVER_IP = '0.0.0.0:8000';
+      console.log("Submitting form data:", dataWithTimestamp);
+
+      const response = await fetch(`http://${SERVER_IP}/submit`, {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(dataWithTimestamp),
       });
+      if (!response.ok){
+        throw new Error('Error submitting form data');
+      }
+      console.log("Form Data Submitted:", response);
+      // const response = await fetch(`http://${SERVER_IP}/submit`, {
+      //   method: "POST",
+      //   body: JSON.stringify(dataWithTimestamp),
+      //   });
 
-      const result = await response.json();
-      console.log("Form Data Submitted:", result);
+  
+
+      // const result = response.json();
+      // console.log("Form Data Submitted:", result);
 
       // Reset form fields after submission
       setFormData({
